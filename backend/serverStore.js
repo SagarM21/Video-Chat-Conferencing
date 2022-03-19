@@ -6,4 +6,12 @@ const addNewConnectedUser = ({ socketId, userId }) => {
 	console.log(connectedUsers);
 };
 
-module.exports = { addNewConnectedUser };
+const removeConnectedUser = (socketId) => {
+	if (connectedUsers.has(socketId)) {
+		connectedUsers.delete(socketId);
+		console.log("New connected users");
+		console.log(connectedUsers);
+	}
+};
+
+module.exports = { addNewConnectedUser, removeConnectedUser };
