@@ -10,7 +10,7 @@ const postFriendInvitationSchema = Joi.object({
 });
 
 const inviteDecisionSchema = Joi.object({
-	id: Joi.string().required,
+	id: Joi.string().required(), // forgot to put parenthesis after required, that's why it was giving error
 });
 
 router.post(
