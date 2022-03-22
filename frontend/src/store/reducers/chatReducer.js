@@ -21,6 +21,8 @@ const reducer = (state = initialState, action) => {
 				...state,
 				messages: action.messages,
 			};
+		default:
+			return state;
 	}
 };
 
