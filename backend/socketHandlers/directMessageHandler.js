@@ -12,7 +12,7 @@ const directMessageHandler = async (socket, data) => {
 		//create new message
 		const message = await Message.create({
 			content: content,
-			authorId: userId,
+			author: userId,
 			date: new Date(),
 			type: "DIRECT",
 		});
@@ -36,7 +36,7 @@ const directMessageHandler = async (socket, data) => {
 			});
 
 			// perform and update to sender and receiver if its online
-			chatUpdates.updateChatHistory(conversation._id.toString());
+			chatUpdates.updateChatHistory(newConversation._id.toString());
 		}
 	} catch (error) {
 		console.log(error);
