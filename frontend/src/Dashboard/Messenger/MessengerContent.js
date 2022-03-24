@@ -11,7 +11,7 @@ const MessengerContent = ({ chosenChatDetails }) => {
 	useEffect(() => {
 		// Fetch chat history
 		getDirectChatHistory({
-			receiverUserId: chosenChatDetails,
+			receiverUserId: chosenChatDetails.id,
 		});
 	}, [chosenChatDetails]);
 	return (

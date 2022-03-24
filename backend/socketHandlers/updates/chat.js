@@ -14,8 +14,10 @@ const updateChatHistory = async (
 			select: "username _id",
 		},
 	});
+
 	if (conversation) {
 		const io = serverStore.getSocketServerInstance();
+
 		if (toSpecifiedSocketId) {
 			// initial update of chat history
 			return io.to(toSpecifiedSocketId).emit("direct-chat-history", {
@@ -27,7 +29,7 @@ const updateChatHistory = async (
 		// check if users of this conversation are online
 		// if yes emit to them update of messages
 
-		conversation.participant.forEach((userId) => {
+		conversation.participants.forEach((userId) => {
 			const activeConnections = serverStore.getActiveConnections(
 				userId.toString()
 			);

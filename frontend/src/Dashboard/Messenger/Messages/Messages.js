@@ -1,10 +1,9 @@
-import { styled } from "@mui/system";
 import React from "react";
-import { connect } from "react-redux";
-import DateSeparator from "./DateSeparator";
-import DUMMY_MESSAGES from "./DUMMY_MESSAGES";
-import Message from "./Message";
+import { styled } from "@mui/system";
 import MessagesHeader from "./MessagesHeader";
+import { connect } from "react-redux";
+import Message from "./Message";
+import DateSeparator from "./DateSeparator";
 
 const MainContainer = styled("div")({
 	height: "calc(100% - 60px)",
@@ -36,7 +35,7 @@ const Messages = ({ chosenChatDetails, messages }) => {
 
 				const sameDay =
 					index > 0 &&
-					convertDateToHumanReadable(new Date(messages.date), "dd/mm/yy") ===
+					convertDateToHumanReadable(new Date(message.date), "dd/mm/yy") ===
 						convertDateToHumanReadable(
 							new Date(messages[index - 1].date),
 							"dd/mm/yy"
@@ -70,7 +69,9 @@ const Messages = ({ chosenChatDetails, messages }) => {
 };
 
 const mapStoreStateToProps = ({ chat }) => {
-	return { ...chat };
+	return {
+		...chat,
+	};
 };
 
 export default connect(mapStoreStateToProps)(Messages);

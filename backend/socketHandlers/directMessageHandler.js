@@ -23,7 +23,7 @@ const directMessageHandler = async (socket, data) => {
 		});
 
 		if (conversation) {
-			conversation.messages.push("message._id");
+			conversation.messages.push(message._id);
 			await conversation.save();
 
 			// perform and update to sender and receiver if its online

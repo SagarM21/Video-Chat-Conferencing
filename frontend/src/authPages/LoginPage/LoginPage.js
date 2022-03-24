@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthBox from "../../shared/components/AuthBox";
-import { validateLogInForm } from "../../shared/utils/validators";
+import { validateLoginForm } from "../../shared/utils/validators";
 import LoginPageFooter from "./LoginPageFooter";
 import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInputs from "./LoginPageInputs";
@@ -15,7 +15,7 @@ const LoginPage = ({ login }) => {
 	const [isFormValid, setIsFormValid] = useState(false);
 
 	useEffect(() => {
-		setIsFormValid(validateLogInForm({ mail, password }));
+		setIsFormValid(validateLoginForm({ mail, password }));
 	}, [mail, setIsFormValid, password]);
 
 	const handleLogin = () => {

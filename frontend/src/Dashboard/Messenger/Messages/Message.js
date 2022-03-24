@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
-import { Typography } from "@mui/material";
 import Avatar from "../../../shared/components/Avatar";
+import Typography from "@mui/material/Typography";
 
 const MainContainer = styled("div")({
 	width: "97%",
@@ -39,6 +39,7 @@ const Message = ({ content, sameAuthor, username, date, sameDay }) => {
 			</SameAuthorMessageContent>
 		);
 	}
+
 	return (
 		<MainContainer>
 			<AvatarContainer>
