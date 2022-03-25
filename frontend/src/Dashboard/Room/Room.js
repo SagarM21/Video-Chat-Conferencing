@@ -1,7 +1,7 @@
 import { styled } from "@mui/system";
 import React, { useState } from "react";
 import ResizeRoomButton from "./ResizeRoomButton";
-import RoomButtons from "./RoomButtons";
+import RoomButtons from "./RoomButtons/RoomButtons";
 import VideosContainer from "./VideosContainer";
 
 const MainContainer = styled("div")({
