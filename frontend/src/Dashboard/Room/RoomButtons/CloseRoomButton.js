@@ -7,7 +7,6 @@ const CloseRoomButton = () => {
 	const handleLeaveRoom = () => {
 		roomHandler.leaveRoom();
 	};
-	console.log(handleLeaveRoom);
 	return (
 		<IconButton onClick={handleLeaveRoom} style={{ color: "white" }}>
 			<CloseIcon />
