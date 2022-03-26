@@ -18,6 +18,8 @@ export const newRoomCreated = (data) => {
 
 export const updateActiveRooms = (data) => {
 	const { activeRooms } = data;
+	console.log("rooms update came from server");
+	console.log(activeRooms);
 	const friends = store.getState().friends.friends;
 
 	const rooms = [];
@@ -30,4 +32,10 @@ export const updateActiveRooms = (data) => {
 		});
 	});
 	store.dispatch(setActiveRooms(rooms));
+};
+
+export const joinRoom = (roomId) => {
+	store.dispatch(setRoomDetails({ roomId }));
+	store.dispatch(setOpenRoom(false, true));
+	socketConnection.joinRoom({ roomId });
 };

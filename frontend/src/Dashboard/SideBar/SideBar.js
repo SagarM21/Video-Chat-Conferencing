@@ -19,15 +19,19 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
 		<MainContainer>
 			<MainPageButton />
 			<CreateRoomButton />
-			{activeRooms.map((room) => {
-				<ActiveRoomButton
-					roomId={room.roomId}
-					creatorUsername={room.creatorUsername}
-					amountOfParticipants={room.participants.length}
-					key={room.roomId}
-					isUserInRoom={isUserInRoom}
-				/>;
-			})}
+			{activeRooms.map(
+				(
+					room // Curly braces lagayenge to render nhi karega, use brackets - error fixed
+				) => (
+					<ActiveRoomButton
+						roomId={room.roomId}
+						creatorUsername={room.creatorUsername}
+						amountOfParticipants={room.participants.length}
+						key={room.roomId}
+						isUserInRoom={isUserInRoom}
+					/>
+				)
+			)}
 		</MainContainer>
 	);
 };
