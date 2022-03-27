@@ -7,6 +7,7 @@ import {
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat.js";
 import * as roomHandler from "./roomHandler";
+import * as webRTCHandler from "./webRTCHandler";
 
 let socket = null;
 
@@ -53,8 +54,14 @@ export const connectWithSocketServer = (userDetails) => {
 	});
 
 	socket.on("conn-prepare", (data) => {
-		console.log("prepare for connection");
-		console.log(data);
+		const { connUserSocketId } = data;
+		webRTCHandler.prepareNewPeerConnection(data, false);
+		socket.on("conn-init", { connUserSocketId: connUserSocketId });
+	});
+
+	socket.on("conn-init", (data) => {
+		const { connUserSocketId } = data;
+		webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
 	});
 };
 
