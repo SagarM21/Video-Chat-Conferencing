@@ -55,8 +55,12 @@ export const connectWithSocketServer = (userDetails) => {
 
 	socket.on("conn-prepare", (data) => {
 		const { connUserSocketId } = data;
-		webRTCHandler.prepareNewPeerConnection(data, false);
+		webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
 		socket.on("conn-init", { connUserSocketId: connUserSocketId });
+	});
+
+	socket.on("conn-signal", (data) => {
+		webRTCHandler.handleSignalingData(data);
 	});
 
 	socket.on("conn-init", (data) => {
@@ -84,4 +88,8 @@ export const joinRoom = (data) => {
 
 export const leaveRoom = (data) => {
 	socket.emit("room-leave", data);
+};
+
+export const signalPeerData = (data) => {
+	socket.emit("conn-signal", data);
 };
