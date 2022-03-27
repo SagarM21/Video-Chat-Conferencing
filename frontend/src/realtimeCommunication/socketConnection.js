@@ -56,7 +56,7 @@ export const connectWithSocketServer = (userDetails) => {
 	socket.on("conn-prepare", (data) => {
 		const { connUserSocketId } = data;
 		webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
-		socket.on("conn-init", { connUserSocketId: connUserSocketId });
+		socket.emit("conn-init", { connUserSocketId: connUserSocketId });
 	});
 
 	socket.on("conn-signal", (data) => {
