@@ -67,6 +67,11 @@ export const connectWithSocketServer = (userDetails) => {
 		const { connUserSocketId } = data;
 		webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
 	});
+
+	socket.on("room-participant-left", (data) => {
+		console.log("user left room");
+		webRTCHandler.handleParticipantLeftRoom(data);
+	});
 };
 
 export const sendDirectMessage = (data) => {
