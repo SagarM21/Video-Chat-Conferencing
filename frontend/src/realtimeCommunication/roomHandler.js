@@ -5,6 +5,7 @@ import {
 	setLocalStream,
 	setRemoteStreams,
 	setScreenSharingStream,
+	setIsUserJoinedWithOnlyAudio,
 } from "../store/actions/roomActions";
 import store from "../store/store";
 import * as socketConnection from "./socketConnection";
@@ -13,6 +14,9 @@ import * as webRTCHandler from "./webRTCHandler";
 export const createNewRoom = () => {
 	const successCallbackFunc = () => {
 		store.dispatch(setOpenRoom(true, true));
+
+		const audioOnly = store.getState().room.audioOnly;
+		store.dispatch(setIsUserJoinedWithOnlyAudio(audioOnly));
 		socketConnection.createNewRoom();
 	};
 	const audioOnly = store.getState().room.audioOnly;
@@ -32,12 +36,19 @@ export const updateActiveRooms = (data) => {
 
 	const rooms = [];
 
+	const userId = store.getState().auth.userDetails?._id;
+
 	activeRooms.forEach((room) => {
-		friends.forEach((f) => {
-			if (f.id === room.roomCreator.userId) {
-				rooms.push({ ...room, creatorUsername: f.username });
-			}
-		});
+		const isUserCreatedByMe = room.roomCreator.userId === userId;
+		if (isUserCreatedByMe) {
+			rooms.push({ ...room, creatorUsername: "Me" });
+		} else {
+			friends.forEach((f) => {
+				if (f.id === room.roomCreator.userId) {
+					rooms.push({ ...room, creatorUsername: f.username });
+				}
+			});
+		}
 	});
 	store.dispatch(setActiveRooms(rooms));
 };
@@ -46,6 +57,8 @@ export const joinRoom = (roomId) => {
 	const successCallbackFunc = () => {
 		store.dispatch(setRoomDetails({ roomId }));
 		store.dispatch(setOpenRoom(false, true));
+		const audioOnly = store.getState().room.audioOnly;
+		store.dispatch(setIsUserJoinedWithOnlyAudio(audioOnly));
 		socketConnection.joinRoom({ roomId });
 	};
 	const audioOnly = store.getState().room.audioOnly;
