@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { fontWeight } from "@mui/system";
+
 const CustomPrimaryButton = ({
 	label,
 	additionalStyles,
