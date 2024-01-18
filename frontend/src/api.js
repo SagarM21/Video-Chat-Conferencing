@@ -3,7 +3,7 @@ import { logout } from "./shared/utils/auth";
 
 const apiClient = axios.create({
   baseURL:
-    process.env.REACT_APP_PRODUCTION === true
+    process.env.REACT_APP_PRODUCTION === "true"
       ? "https://rtc-video-backend.vercel.app/api"
       : "http://localhost:5002/api",
   timeout: 1000,
