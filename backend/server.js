@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://rtc-video-backend.vercel.app/",
+    origin: "https://rtc-video-backend.vercel.app/api",
   })
 );
 
