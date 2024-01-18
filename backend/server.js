@@ -18,6 +18,7 @@ app.use(cors({ origin: true }));
 //register routes
 app.use("/api/auth", authRoutes);
 app.use("/api/friend-invitation", friendInvitationRoutes);
+app.get("/", (req, res) => res.send("Hello"));
 
 const server = http.createServer(app);
 socketServer.registerSocketServer(server);
