@@ -12,17 +12,16 @@ import * as webRTCHandler from "./webRTCHandler";
 let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
-  const jwtToken = userDetails.token;
-  socket = io(
+  const socketString =
     process.env.REACT_APP_PRODUCTION === true
       ? "https://rtc-video-backend.vercel.app"
-      : "http://localhost:5002",
-    {
-      auth: {
-        token: jwtToken,
-      },
-    }
-  );
+      : "http://localhost:5002";
+  const jwtToken = userDetails.token;
+  socket = io(socketString, {
+    auth: {
+      token: jwtToken,
+    },
+  });
 
   socket.on("connect", () => {
     console.log("Successfully connected with socket.io server");
