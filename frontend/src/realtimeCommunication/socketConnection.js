@@ -13,7 +13,7 @@ let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
   const socketString =
-    process.env.REACT_APP_PRODUCTION === "true"
+    process.env.REACT_APP_PRODUCTION === "false"
       ? "https://rtcbackend.vercel.app"
       : "http://localhost:5002";
   console.log(socketString, "socketString");
