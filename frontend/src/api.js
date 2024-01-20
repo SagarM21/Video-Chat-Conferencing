@@ -6,7 +6,6 @@ const apiClient = axios.create({
     process.env.REACT_APP_PRODUCTION === "true"
       ? "https://rtcbackend.vercel.app/api"
       : "http://localhost:5002/api",
-  timeout: 1000,
 });
 
 apiClient.interceptors.request.use(
