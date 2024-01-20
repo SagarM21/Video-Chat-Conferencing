@@ -4,7 +4,7 @@ import { logout } from "./shared/utils/auth";
 const apiClient = axios.create({
   baseURL:
     process.env.REACT_APP_PRODUCTION === "true"
-      ? "https://rtcbackend.vercel.app/api"
+      ? "https://p2p-webrtc-5iio.onrender.com/api"
       : "http://localhost:5002/api",
 });
 
