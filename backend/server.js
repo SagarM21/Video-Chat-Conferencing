@@ -19,7 +19,6 @@ app.use(cors({ origin: true }));
 //register routes
 app.use("/api/auth", authRoutes);
 app.use("/api/friend-invitation", friendInvitationRoutes);
-app.get("/", (req, res) => res.send("Hello"));
 
 const server = http.createServer(app);
 socketServer.registerSocketServer(server);
@@ -37,12 +36,14 @@ mongoose
   });
 
 // DEPLOYMENT ON RENDER
-// const __dirname1 = path.resolve();
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname1, "../frontend/build")));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname1, "../frontend", "build", "index.html"));
-//   });
-// } else {
-//   app.get("/", (req, res) => res.send("Hello"));
-// }
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "../frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname1, "../frontend", "build", "index.html")
+    );
+  });
+} else {
+  app.get("/", (req, res) => res.send("Hello"));
+}
