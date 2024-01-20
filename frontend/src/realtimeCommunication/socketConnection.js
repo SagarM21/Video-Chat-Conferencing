@@ -14,7 +14,7 @@ let socket = null;
 export const connectWithSocketServer = (userDetails) => {
   const socketString =
     process.env.REACT_APP_PRODUCTION === "true"
-      ? "https://rtc-video-backend.vercel.app"
+      ? "https://rtcbackend.vercel.app/"
       : "http://localhost:5002";
 //   console.log(socketString, "socketString");
   const jwtToken = userDetails.token;
