@@ -18,7 +18,7 @@ export const connectWithSocketServer = (userDetails) => {
       : "http://localhost:5002";
   console.log(socketString, "socketString");
   const jwtToken = userDetails.token;
-  socket = io("https://rtcbackend.vercel.app", {
+  socket = io(socketString, {
     auth: {
       token: jwtToken,
     },
