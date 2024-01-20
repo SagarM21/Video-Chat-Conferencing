@@ -12,12 +12,8 @@ const PORT = process.env.PORT || process.env.API_PORT;
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://p2p-webtrc.vercel.app",
-    credentials: true,
-  })
-);
+app.use(cors());
+app.use(cors({ origin: true }));
 
 //register routes
 app.use("/api/auth", authRoutes);
