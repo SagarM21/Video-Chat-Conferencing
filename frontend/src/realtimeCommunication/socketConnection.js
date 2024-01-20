@@ -16,7 +16,7 @@ export const connectWithSocketServer = (userDetails) => {
     process.env.REACT_APP_PRODUCTION === "true"
       ? "https://rtcbackend.vercel.app"
       : "http://localhost:5002";
-//   console.log(socketString, "socketString");
+  console.log(socketString, "socketString");
   const jwtToken = userDetails.token;
   socket = io(socketString, {
     auth: {
